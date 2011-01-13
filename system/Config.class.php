@@ -18,17 +18,17 @@ class Config
 
     public static function load($config)
     {
+        if (empty($config))
+        {
+            throw new CevizException('Config Belirtilmedi.');
+        }
+
         if (array_key_exists($config,Config::$config_cache))
         {
             return Config::$config_cache[$config];
         }
         else
         {
-            if (empty($config))
-            {
-                throw new CevizException('Config Belirtilmedi.');
-            }
-
             $config_file = APP_PATH.'config'.DS.strtolower($config).'.php';
 
             if (file_exists($config_file) === false)
