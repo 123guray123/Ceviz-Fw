@@ -18,6 +18,7 @@ return array(
         'user' => 'root',
         'pass' => '123456',
         'db'   => 'ceviz',
+        'driver' => 'mysql',
         'active' => 1
     ),
     'slave' => array (
@@ -25,6 +26,7 @@ return array(
         'user' => 'root',
         'pass' => '123456',
         'db'   => 'ceviz',
+        'driver' => 'mysql',
         'active' => 0
     )
 );

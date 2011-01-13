@@ -23,12 +23,12 @@ class BaseModel
 
         if ($config['master']['active'])
         {
-            $this->MasterDatabase = Database::instance('master');
+            $this->MasterDatabase = MasterDatabase::instance($config['master']);
         }
 
         if ($config['slave']['active'])
         {
-            $this->SlaveDatabase = Database::instance('slave');
+            $this->SlaveDatabase = SlaveDatabase::instance($config['slave']);
         }
     }
 }
