@@ -51,6 +51,8 @@ class Router
                     # Eğer route dizisinde tanımlanan bir değere uyuyor ise.
                     if (preg_match('#^'.$key.'$#',$value))
                     {
+                        $uri = $value;
+
                         # Uyan keyin içinde $1 var ise bunu değiştirelim.
                         if (strstr($value,'$') && strstr($key,'('))
                         {
