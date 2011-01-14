@@ -77,14 +77,14 @@ class Router
 
         # Değişkenlerimizi oluşturalım
         $controller = $uri[0];
-        $controller_file = APP_PATH.'controllers'.DS.strtolower($controller);
+        $controller_file = APP_PATH.'controller'.DS.strtolower($controller);
 
         # Eğer ilk eleman dizin ise.
-        if (is_dir(APP_PATH.'controllers'.DS.strtolower($controller)))
+        if (is_dir(APP_PATH.'controller'.DS.strtolower($controller)))
         {
             # Kontrol dosyamız.
             $controller = $uri[1];
-            $controller_file = APP_PATH.'controllers'.DS.strtolower($uri[0]).DS.$controller.EXT;
+            $controller_file = APP_PATH.'controller'.DS.strtolower($uri[0]).DS.$controller.EXT;
 
             if (file_exists($controller_file))
             {
