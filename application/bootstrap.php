@@ -14,15 +14,11 @@ defined('SITE_PATH') or die('No direct access');
 
 # Hata Mesajları
 # -------------------
-error_reporting('E_ALL ~ E_NOTICE');
+error_reporting(E_ALL);
 
 # Zaman Ayarı
 # -------------------
 date_default_timezone_set('Europe/Istanbul');
-
-# Yerel Ayar
-# -------------------
-setlocale(LC_ALL, 'tr_TR.UTF-8');
 
 # Otomatik Yüklenecek Modeller
 # ------------------------------

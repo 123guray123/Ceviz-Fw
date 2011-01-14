@@ -15,6 +15,18 @@ class Router
 {
     public static function load()
     {
+        # Route dosyasını yükle
+        $route_file = APP_PATH.'config/route'.EXT;
+        
+        if (file_exists($route_file))
+        {
+            require_once($route_file);
+        }
+        else
+        {
+            throw new CevizException("Route dosyası bulunamadı.");
+        }
+
         # İstek Yapılan Url
         $uri = Router::get_uri();
 
@@ -25,41 +37,43 @@ class Router
 
         if (empty($uri))
         {
-            $uri = $default_config['base_controller'];
+            $uri = $route['base_controller'];
         }
         else
         {
-            # Genel ayar dosyasını yükle
-            $default_config = APP_PATH.'config/default'.EXT;
-            if (file_exists($default_config))
-            {
-                require_once($default_config);
-            }
-            else
-            {
-                throw new CevizException("{$default_config} bulunamadi.");
-            }
-            
             if (array_key_exists($uri,$route))
             {
                 $uri = $route[$uri];
             }
             else
             {
-                foreach ($route AS $key => $value)
+                try
                 {
-                    # Eğer route dizisinde tanımlanan bir değere uyuyor ise.
-                    if (preg_match('#^'.$key.'$#',$value))
+                    foreach ($route AS $key => $value)
                     {
-                        # Uyan keyin içinde $1 var ise bunu değiştirelim.
-                        if (strstr($value,'$') && strstr($key,'('))
+                        # Eğer route dizisinde tanımlanan bir değere uyuyor ise.
+                        if (preg_match('#^'.$key.'$#',$uri))
                         {
-                            $uri = preg_replace('#^'.$key.'$#',$value,$uri);
-                        }
+                            # Uyan keyin içinde $1 var ise bunu değiştirelim.
+                            if (strstr($value,'$') && strstr($key,'('))
+                            {
+                                $value = preg_replace('#^'.$key.'$#',$value,$uri);
+                            }
 
-                        # Döngümüzü durduruyoruz.
-                        break;
+                            $uri = $value;
+
+                            # Döngümüzü durduruyoruz.
+                            break;
+                        }
+                        else
+                        {
+                            throw new CevizException ('Yönlendirme kurallarınızda bir sorun var.');
+                        }
                     }
+                }
+                Catch (CevizException $e)
+                {
+                    die($e);
                 }
             }
         }
@@ -76,22 +90,29 @@ class Router
          */
 
         # Değişkenlerimizi oluşturalım
-        $controller = $uri[0];
-        $controller_file = APP_PATH.'controller'.DS.strtolower($controller);
+        $controller = ucfirst($uri_part[0]);
+        $controller_file = APP_PATH.'controller'.DS.$controller;
 
         # Eğer ilk eleman dizin ise.
-        if (is_dir(APP_PATH.'controller'.DS.strtolower($controller)))
+        if (is_dir(APP_PATH.'controller'.DS.$controller))
         {
             # Kontrol dosyamız.
-            $controller = $uri[1];
-            $controller_file = APP_PATH.'controller'.DS.strtolower($uri[0]).DS.$controller.EXT;
+            $sub_controller = ucfirst($uri_part[1]);
+            $controller_file = APP_PATH.'controller'.DS.$controller.DS.$sub_controller.EXT;
 
             if (file_exists($controller_file))
             {
+                # Alt Kontrol dosyasını ana kontrol olarak tanımlayalım.
+                $controller = $sub_controller;
+                
                 # Çağırılacak metodumuz.
                 if (isset($uri_part[2]))
                 {
                     $action = $uri_part[2];
+                }
+                else
+                {
+                    $action = 'index';
                 }
 
                 # Parametre alıyor mu kontrol edelim.
@@ -109,13 +130,17 @@ class Router
         # Eğer kontrol dosyamız dizin değil ise.
         else
         {
-            $controller_file = APP_PATH.'controller'.DS.strtolower($controller).EXT;
+            $controller_file = APP_PATH.'controller'.DS.$controller.EXT;
             if (file_exists($controller_file))
             {
                 # Çağrılacak metodumuz.
                 if (isset($uri_part[1]))
                 {
                     $action = $uri_part[1];
+                }
+                else
+                {
+                    $action = 'index';
                 }
 
                 # Parametre alıyor mu kontrol edelim.
@@ -125,27 +150,27 @@ class Router
                 }
             }
         }
-
+        
         # Dosyamızı dahil edelim.
         require_once($controller_file);
+        
+        # Sınıfı Başlat.
+        $class = new $controller;
 
         # Çağrılmak istenen action sınıfta tanımlımı kontrol ediyoruz.
-        if (is_callable(array($controller, $action)) === false)
+        if (is_callable(array($class, $action)) === false)
         {
             $action = 'index';
         }
 
-        # İlk harfini büyütelim.
-        $controller = ucfirst($controller);
-
         # Kontrol sınıfımızı çağıralım.
         if (!is_null($parameters))
         {
-            call_user_func_array(array($controller, $action), $parameters);
+            call_user_func_array(array($class, $action), $parameters);
         }
         else
         {
-            $controller->{$action}();
+           $class->$action();
         }
     }
 

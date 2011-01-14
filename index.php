@@ -21,11 +21,11 @@ define('DS',DIRECTORY_SEPARATOR);
 
 # Sistem Dizini
 # ---------------
-define('SYS_PATH',  SITE_PATH.DS.'system');
+define('SYS_PATH',SITE_PATH.DS.'system'.DS);
 
 # Uygulama Dizini
 # -------------
-define('APP_PATH',SITE_PATH.DS.'application');
+define('APP_PATH',SITE_PATH.DS.'application'.DS);
 
 # Dosya Uzantı.
 define('EXT','.php');
