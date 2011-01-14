@@ -32,6 +32,6 @@ define('EXT','.php');
 
 # Uygualama Ayarları
 # -----------------------
-require_once(APP_PATH.'bootstrap.php');
+require_once(APP_PATH.'bootstrap'.EXT);
 
 // end of file index.php
