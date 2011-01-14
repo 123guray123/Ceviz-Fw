@@ -17,7 +17,7 @@ class Router
     {
         # Route dosyasını yükle
         $route_file = APP_PATH.'config/route'.EXT;
-        
+
         if (file_exists($route_file))
         {
             require_once($route_file);
@@ -51,15 +51,8 @@ class Router
                 {
                     foreach ($route AS $key => $value)
                     {
-<<<<<<< HEAD
                         # Eğer route dizisinde tanımlanan bir değere uyuyor ise.
                         if (preg_match('#^'.$key.'$#',$uri))
-=======
-                        $uri = $value;
-
-                        # Uyan keyin içinde $1 var ise bunu değiştirelim.
-                        if (strstr($value,'$') && strstr($key,'('))
->>>>>>> f86824de6031c978ad7ad69ac06ad6df24c88997
                         {
                             # Uyan keyin içinde $1 var ise bunu değiştirelim.
                             if (strstr($value,'$') && strstr($key,'('))
@@ -111,7 +104,7 @@ class Router
             {
                 # Alt Kontrol dosyasını ana kontrol olarak tanımlayalım.
                 $controller = $sub_controller;
-                
+
                 # Çağırılacak metodumuz.
                 if (isset($uri_part[2]))
                 {
@@ -157,10 +150,10 @@ class Router
                 }
             }
         }
-        
+
         # Dosyamızı dahil edelim.
         require_once($controller_file);
-        
+
         # Sınıfı Başlat.
         $class = new $controller;
 
