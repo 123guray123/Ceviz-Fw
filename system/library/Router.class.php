@@ -30,13 +30,14 @@ class Router
         else
         {
             # Genel ayar dosyasını yükle
-            if (file_exists(APP_PATH.'config/default.php'))
+            $default_config = APP_PATH.'config/default'.EXT;
+            if (file_exists($default_config))
             {
-                require_once(APP_PATH.'config/default.php');
+                require_once($default_config);
             }
             else
             {
-                throw new CevizException(APP_PATH.'config/default.php');
+                throw new CevizException("{$default_config} bulunamadi.");
             }
             
             if (array_key_exists($uri,$route))
@@ -83,7 +84,7 @@ class Router
         {
             # Kontrol dosyamız.
             $controller = $uri[1];
-            $controller_file = APP_PATH.'controllers'.DS.strtolower($uri[0]).DS.$controller.ext;
+            $controller_file = APP_PATH.'controllers'.DS.strtolower($uri[0]).DS.$controller.EXT;
 
             if (file_exists($controller_file))
             {
@@ -108,7 +109,7 @@ class Router
         # Eğer kontrol dosyamız dizin değil ise.
         else
         {
-            $controller_file = APP_PATH.'controller'.DS.strtolower($controller).ext;
+            $controller_file = APP_PATH.'controller'.DS.strtolower($controller).EXT;
             if (file_exists($controller_file))
             {
                 # Çağrılacak metodumuz.

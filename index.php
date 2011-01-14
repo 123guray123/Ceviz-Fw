@@ -27,6 +27,9 @@ define('SYS_PATH',  SITE_PATH.DS.'system');
 # -------------
 define('APP_PATH',SITE_PATH.DS.'application');
 
+# Dosya Uzantı.
+define('EXT','.php');
+
 # Uygualama Ayarları
 # -----------------------
 require_once(APP_PATH.'bootstrap.php');

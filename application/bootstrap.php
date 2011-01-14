@@ -40,4 +40,7 @@ $helper = array();
 # -------------------
 require_once(APP_PATH.'init.php');
 
+# İstekleri Yönlendir.
+Router::load();
+
 // End of file bootstrap.php
