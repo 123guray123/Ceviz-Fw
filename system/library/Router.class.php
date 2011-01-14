@@ -30,7 +30,14 @@ class Router
         else
         {
             # Genel ayar dosyasını yükle
-            require_once(APP_PATH.'config/default.php');
+            if (file_exists(APP_PATH.'config/default.php'))
+            {
+                require_once(APP_PATH.'config/default.php');
+            }
+            else
+            {
+                throw new CevizException(APP_PATH.'config/default.php');
+            }
             
             if (array_key_exists($uri,$route))
             {
