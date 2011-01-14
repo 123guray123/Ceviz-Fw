@@ -14,23 +14,7 @@ defined('SITE_PATH') or die('No direct access');
 
 class BaseModel
 {
-    protected $MasterDatabase;
-    protected $SlaveDatabase;
-    
-    public function __construct()
-    {
-        $config = Config::load('database');
-
-        if ($config['master']['active'])
-        {
-            $this->MasterDatabase = MasterDatabase::instance($config['master']);
-        }
-
-        if ($config['slave']['active'])
-        {
-            $this->SlaveDatabase = SlaveDatabase::instance($config['slave']);
-        }
-    }
+    // put here code
 }
 
 // End of file BaseModel

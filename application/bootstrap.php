@@ -2,7 +2,7 @@
 defined('SITE_PATH') or die('No direct access');
 
 /**
- * Bootstrap
+ * Uygulama ile ilgili ayarlar
  *
  * @package Ceviz Framework
  * @author Yusuf Koç
@@ -12,32 +12,32 @@ defined('SITE_PATH') or die('No direct access');
  * @license See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 
-# Error Reporting
+# Hata Mesajları
 # -------------------
 error_reporting('E_ALL ~ E_NOTICE');
 
-# Set Timezone
+# Zaman Ayarı
 # -------------------
 date_default_timezone_set('Europe/Istanbul');
 
-# Set Locale
+# Yerel Ayar
 # -------------------
 setlocale(LC_ALL, 'tr_TR.UTF-8');
 
-# Autoload Modules
-# -------------------
+# Otomatik Yüklenecek Modeller
+# ------------------------------
 $model = array();
 
-# Autoload Library
-# -------------------
+# Otomatik Yüklenecek Kütüphaneler
+# ----------------------------------
 $library = array();
 
-# Autoload Helper
-# -------------------
+# Otomatik Yüklenecek Yardımcılar
+# -----------------------------------
 $helper = array();
 
-# Include Init
-# ------------------
+# Sistem Dosyaları
+# -------------------
 require_once(APP_PATH.'init.php');
 
 // End of file bootstrap.php

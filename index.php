@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Description of bootstrap
+ * Index Dosyası ve site dizin ayarları
+ *
  * @package Ceviz Framework
  * @author Yusuf Koç
  * @copyright Copyright (c) 2001 - 2011 Ceviz.Net
@@ -10,24 +11,24 @@
  * @license See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 
-# Site Path
+# Site Dizini
 # ------------
 define('SITE_PATH', realpath(dirname(__FILE__)));
 
-# DIRECTORY_SEPARATOR
+# Dizin Ayracı
 # -----------------------
 define('DS',DIRECTORY_SEPARATOR);
 
-# System Path
+# Sistem Dizini
 # ---------------
 define('SYS_PATH',  SITE_PATH.DS.'system');
 
-# App Path
+# Uygulama Dizini
 # -------------
 define('APP_PATH',SITE_PATH.DS.'application');
 
-# Bootstrap
-# --------------
+# Uygualama Ayarları
+# -----------------------
 require_once(APP_PATH.'bootstrap.php');
 
 // end of file index.php
