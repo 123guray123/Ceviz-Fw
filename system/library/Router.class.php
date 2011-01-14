@@ -51,8 +51,15 @@ class Router
                 {
                     foreach ($route AS $key => $value)
                     {
+<<<<<<< HEAD
                         # Eğer route dizisinde tanımlanan bir değere uyuyor ise.
                         if (preg_match('#^'.$key.'$#',$uri))
+=======
+                        $uri = $value;
+
+                        # Uyan keyin içinde $1 var ise bunu değiştirelim.
+                        if (strstr($value,'$') && strstr($key,'('))
+>>>>>>> f86824de6031c978ad7ad69ac06ad6df24c88997
                         {
                             # Uyan keyin içinde $1 var ise bunu değiştirelim.
                             if (strstr($value,'$') && strstr($key,'('))
