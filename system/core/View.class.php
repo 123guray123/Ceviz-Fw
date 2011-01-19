@@ -1,4 +1,5 @@
 <?php
+defined('SITE_PATH') or die('No direct access');
 
 /**
  * Description of View
