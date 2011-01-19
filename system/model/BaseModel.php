@@ -12,7 +12,7 @@ defined('SITE_PATH') or die('No direct access');
  * @license See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 
-class BaseModel
+class Base_Model
 {
     // put here code
 }

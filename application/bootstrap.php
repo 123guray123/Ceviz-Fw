@@ -20,10 +20,6 @@ error_reporting(E_ALL);
 # -------------------
 date_default_timezone_set('Europe/Istanbul');
 
-# Otomatik Yüklenecek Modeller
-# ------------------------------
-$model = array();
-
 # Otomatik Yüklenecek Kütüphaneler
 # ----------------------------------
 $library = array();
@@ -35,6 +31,12 @@ $helper = array();
 # Sistem Dosyaları
 # -------------------
 require_once(APP_PATH.'init.php');
+
+# Sınıf Yükleyici.
+spl_autoload_register('CevizAutoload::model');
+spl_autoload_register('CevizAutoload::library');
+spl_autoload_register('CevizAutoload::helper');
+spl_autoload_register('CevizAutoload::core');
 
 # İstekleri Yönlendir.
 Router::load();

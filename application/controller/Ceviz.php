@@ -11,11 +11,13 @@ defined('SITE_PATH') or die('No direct access');
  * @license See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 
-class Ceviz extends BaseController
+class Ceviz extends Base_Controller
 {
     public function index()
     {
-        echo 'Ceviz Framework Version 1.0';
+        $tpl = View::factory('ceviz');
+        $tpl->message = 'Ceviz Framework Version 1.0';
+        $tpl->run();
     }
 }
 // End of file Ceviz

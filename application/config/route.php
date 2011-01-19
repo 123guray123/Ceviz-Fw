@@ -12,3 +12,4 @@ defined('SITE_PATH') or die('No direct access');
  */
 
 $route['base_controller'] = 'ceviz';
+//$route['^admin/goster$'] = 'admin/admin/show';

@@ -11,14 +11,17 @@ defined('SITE_PATH') or die('No direct access');
  * @license See the file http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  */
 
-# Yönlendirme Sınıfı
-require_once(SYS_PATH.'library'.DS.'Router.class'.EXT);
-
-# Hata Ayıklama
-require_once(SYS_PATH.'library'.DS.'CevizException.class'.EXT);
-
 # Base Controller
 require_once(SYS_PATH.'controller'.DS.'BaseController'.EXT);
 
 # Base Model
 require_once(SYS_PATH.'model'.DS.'BaseModel'.EXT);
+
+# Hata Yakalayıcı
+require_once(SYS_PATH.'core'.DS.'CevizException.class'.EXT);
+
+# Yönlendirici Sınıf
+require_once(SYS_PATH.'core'.DS.'Router.class'.EXT);
+
+# Sınıf Yükleyici.
+require_once(SYS_PATH.'CevizAutoload.class'.EXT);
