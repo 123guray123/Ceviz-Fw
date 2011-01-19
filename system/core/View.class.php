@@ -13,7 +13,6 @@ defined('SITE_PATH') or die('No direct access');
 
 class View
 {
-    private $instance;
     private $tpl;
     private $data = array();
     private $template_dir;
